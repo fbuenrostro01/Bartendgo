@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liquor Inventory</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Liquor Inventory</h1>
+
+    <table id="inventory-table">
+      <thead>
+        <tr>
+          <th>Item ID</th>
+          <th>Type of Liquor</th>
+          <th>Brand</th>
+          <th>Price</th>
+          <th>Amount on Hand</th>
+          <th>Stock Warning</th>
+          <th>Reorder Level</th>
+          <th>Action/Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Liquor items can be places here -->
+      </tbody>
+    </table>
+
+    <script>
+      // mock data will be using json for final project pulled from database f
+      const inventory = [
+        {
+          id: 101,
+          brand: "Jack Daniel's",
+          type: "Whiskey",
+          price: 45.99,
+          amount: 10,
+          reorderLevel: 5,
+        },
+        {
+          id: 102,
+          brand: "Grey Goose",
+          type: "Vodka",
+          price: 40.0,
+          amount: 2,
+          reorderLevel: 5,
+        },
+        {
+          id: 103,
+          brand: "Hennessy",
+          type: "Cognac",
+          price: 65.0,
+          amount: 8,
+          reorderLevel: 3,
+        },
+        {
+          id: 104,
+          brand: "Patrón",
+          type: "Tequila",
+          price: 50.0,
+          amount: 0,
+          reorderLevel: 4,
+        },
+        {
+          id: 105,
+          brand: "Jameson",
+          type: "Irish Whiskey",
+          price: 35.0,
+          amount: 15,
+          reorderLevel: 6,
+        },
+        {
+          id: 106,
+          brand: "Bacardi",
+          type: "Rum",
+          price: 25.0,
+          amount: 4,
+          reorderLevel: 5,
+        },
+      ];
+
+      const lowStockThreshold = 5; // Stock threshold for "low stock" warning
+
+      // Function to display the liquor inventory items
+      function displayInventory() {
+        const tbody = document.querySelector("#inventory-table tbody");
+
+        inventory.forEach((product) => {
+          // Create a new row
+          const row = document.createElement("tr");
+
+          // Create cells for each property
+          const idCell = document.createElement("td");
+          idCell.textContent = product.id;
+          row.appendChild(idCell);
+
+          const brandCell = document.createElement("td");
+          brandCell.textContent = product.brand;
+          row.appendChild(brandCell);
+
+          const typeCell = document.createElement("td");
+          typeCell.textContent = product.type;
+          row.appendChild(typeCell);
+
+          const priceCell = document.createElement("td");
+          priceCell.textContent = `$${product.price.toFixed(2)}`;
+          row.appendChild(priceCell);
+
+          const amountCell = document.createElement("td");
+          amountCell.textContent = product.amount;
+          row.appendChild(amountCell);
+
+          // Create a warning if stock is low
+          const warningCell = document.createElement("td");
+          if (product.amount < lowStockThreshold) {
+            warningCell.textContent = "Low Stock";
+            warningCell.classList.add("low-stock");
+          } else {
+            warningCell.textContent = "In Stock";
+          }
+          row.appendChild(warningCell);
+
+          // Reorder level cell
+          const reorderCell = document.createElement("td");
+          reorderCell.textContent = product.reorderLevel;
+          row.appendChild(reorderCell);
+
+          // Action cell with an edit link
+          const actionCell = document.createElement("td");
+          const editLink = document.createElement("span");
+          editLink.textContent = "Click to edit";
+          editLink.classList.add("edit-link");
+          actionCell.appendChild(editLink);
+          row.appendChild(actionCell);
+
+          // Append the row to the table body
+          tbody.appendChild(row);
+        });
+      }
+
+      // Call the function to display the inventory
+      displayInventory();
+    </script>
+  </body>
+</html>
