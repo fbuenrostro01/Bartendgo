@@ -1,0 +1,60 @@
+{
+    "liquor": [
+      {
+        "id": 1,
+        "name": "Banana",
+        "price": 32,
+        "quantity": 200,
+        "type": "fruits"
+      },
+      {
+        "id": 2,
+        "picture": "🍓",
+        "name": "Strawberry",
+        "price": 52,
+        "quantity": 100,
+        "type": "fruits"
+      },
+      {
+        "id": 3,
+        "picture": "🍗",
+        "name": "Checken",
+        "price": 110,
+        "quantity": 190,
+        "type": "foods",
+        "sub-type": "Non-Veg"
+      },
+      {
+        "id": 4,
+        "picture": "🥬",
+        "name": "Lettuce",
+        "price": 12,
+        "quantity": 50,
+        "type": "Vegetables"
+      },
+      {
+        "id": 5,
+        "picture": "🍅",
+        "name": "Tomato",
+        "price": 31,
+        "quantity": 157,
+        "type": "Vegetables"
+      },
+      {
+        "id": 6,
+        "picture": "🥩",
+        "name": "Mutton",
+        "price": 325,
+        "quantity": 90,
+        "type": "Non-Veg"
+      },
+      {
+        "id": 7,
+        "picture": "🥕",
+        "name": "Carrot",
+        "price": 42,
+        "quantity": 190,
+        "type": "Vegetables"
+      }
+    ]
+  }
