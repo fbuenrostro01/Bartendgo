@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './index.css'; 
 import SortableTableHeader from './SortItems'; // this lets us sort the header for items
-import EditModal from './EditItemWindow'; // the stuff for editing items not completed yet
+import EditModal from './Components/EditWindow/EditItemWindow'; // the stuff for editing items not completed yet
 
 
 const BASE_URL = "https://unit-4-project-app-24d5eea30b23.herokuapp.com";
