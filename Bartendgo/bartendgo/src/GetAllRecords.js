@@ -62,7 +62,7 @@ const GetAllRecords = () => {
 
   // for the life of em i coulnt figure out how to delete or update some of the json stuff that was already there this skipps all a few lines 
   // so it only shows the actual drinks it will need to be deleted 
-  const filteredRecords = sortedRecords.filter(record => record.id < 3 || record.id > 34);
+  const filteredRecords = sortedRecords.filter(record => record.id > 1);
 
   return (
     <div className="background"> {/* Apply background styling */}
