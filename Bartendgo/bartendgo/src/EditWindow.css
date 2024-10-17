@@ -31,3 +31,16 @@
     cursor: pointer;
   }
   
+  .price {
+    color: black;
+    padding-left: 20%;
+  }
+
+  .price-box{
+    padding-left: 12.5%;
+  }
+
+  .amount {
+    color: black;
+    padding-left: 9%;
+  }

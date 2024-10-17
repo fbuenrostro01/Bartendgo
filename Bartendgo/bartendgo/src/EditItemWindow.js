@@ -13,12 +13,13 @@ const EditModal = ({ isOpen, onClose, record, onDelete }) => {
         <p>Brand: {brand}</p>
         <p>Type of Liquor: {type_of_liquor}</p>
 
-        <label>
-          Price:
-          <input type="number" defaultValue={price} />
+        <label className='price'>
+          Price
+          <input className='price-box' type="number" defaultValue={price} />
         </label>
-        <label>
-          Amount on Hand:
+        
+        <label className='amount'>
+          Amount on Hand
           <input type="number" defaultValue={amount_on_hand} />
         </label>
 
