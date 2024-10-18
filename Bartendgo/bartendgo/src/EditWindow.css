@@ -19,15 +19,39 @@
     border-radius: 8px;
     width: 400px;
     text-align: center;
+    line-height: 200%;
   }
   
   .modal-buttons {
     margin-top: 20px;
+    gap: 20px;
   }
   
   .modal-buttons button {
     margin: 0 10px;
     padding: 10px 20px;
     cursor: pointer;
+    gap: 20px;
   }
+  
+  .price {
+    color: black;
+    padding-left: 20%;
+    display: flex;
+    gap: 10px;
+    margin-left: 12px;
+    padding-bottom: 4%;
+    
+  }
+
+  .price-box{
+    
+  }
+
+  .amount {
+    color: black;
+    display: flex;
+    gap: 10px;
+  }
+
   
