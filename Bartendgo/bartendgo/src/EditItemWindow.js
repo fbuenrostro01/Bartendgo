@@ -1,7 +1,7 @@
 import React from 'react';
 import './EditWindow.css'; 
 
-const EditModal = ({ isOpen, onClose, record, onDelete, onUpdate }) => {
+const EditModal = ({ isOpen, onClose, record, onDelete, onUpdate, onCreate }) => {
   if (!isOpen) return null; // doesnt render if not open
 
   const { brand, type_of_liquor, price, amount_on_hand } = record.data_json;
@@ -19,14 +19,15 @@ const EditModal = ({ isOpen, onClose, record, onDelete, onUpdate }) => {
         </label>
         
         <label className='amount'>
-          Amount on Hand
-          <input type="number" defaultValue={amount_on_hand} />
+          Amount
+          <input className='amount-box' type="number" defaultValue={amount_on_hand} />
         </label>
 
         <div className="modal-buttons">
           <button onClick={onClose}>Close</button>
           <button onClick={onDelete}>Delete Item</button>
           <button onClick={onUpdate}>Update</button>
+          <button onClick={onCreate}>Create</button>
         </div>
       </div>
     </div>
