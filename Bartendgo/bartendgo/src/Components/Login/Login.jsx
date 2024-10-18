@@ -7,31 +7,30 @@ import { FaLock } from "react-icons/fa";
 import user_icon from '../Assests/person.png'
 import password_icon from '../Assests/password.png'
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
+
+    
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      
+      setIsLoggedIn(true); // changes the state of it to true which logs you in / if we have time weed need to add anohter button to log out 
+    }; // the user we can problem have the button trigger with a click and a timer that automatically logs out after 3 min back to login page
+  
     return (
-        <div className = 'wrapper'>
-            <form action="">
-                <h1>Login</h1>
-                <div className='input-box'>
-                    <input type="text" placeholder='Username' required />
-                    <FaUser className='icon' />
-
-                </div>
-                <div className='input-box'>
-                    <input type="password" placeholder='Password' required />
-                    <FaLock className='icon'/>
-
-                </div>
-
-                <div className="remember-forgot">
-                    <label><input type="checkbox" />Remember me</label>
-                    <a href='#'>Forgot password?</a>
-                </div>
-
-                <button type="submit">Login</button>
-            </form>
-        </div>
+      <div className='wrapper'>
+        <form onSubmit={handleSubmit}>
+          <h1>Login</h1>
+          <div className='input-box'>
+            <input type="text" placeholder='Username' required />
+          </div>
+          <div className='input-box'>
+            <input type="password" placeholder='Password' required />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+      </div>
     );
-};
-
-export default Login
+  };
+  
+  export default Login;
+  

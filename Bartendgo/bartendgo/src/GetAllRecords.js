@@ -3,17 +3,16 @@ import './index.css';
 import SortableTableHeader from './SortItems'; // this lets us sort the header for items
 import EditModal from './EditItemWindow'; // the stuff for editing items not completed yet
 
-
 const BASE_URL = "https://unit-4-project-app-24d5eea30b23.herokuapp.com";
-
 
 const GetAllRecords = () => {
   const [records, setRecords] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, order: null });
   const [selectedRecord, setSelectedRecord] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(''); // temporarily stores the search term
 
-  // Fetches all the stuff first
+  // gets all the records first
   useEffect(() => {
     const fetchAllRecords = async () => {
       const response = await fetch(`${BASE_URL}/get/all?teamId=3`);
@@ -22,52 +21,63 @@ const GetAllRecords = () => {
     };
     fetchAllRecords(); 
   }, []); // Empty array runs once
-  // sorts the items
+
+  // Sorts the items
   const handleSort = (key) => {
-    let order = 'asc'; // sorts from top to bottom or bottometo top cant remember
+    let order = 'asc'; // sorts from top to bottom or bottom to top
     if (sortConfig.key === key && sortConfig.order === 'asc') {
       order = 'desc'; 
     }
     setSortConfig({ key, order }); 
   };
 
-  
   const sortedRecords = [...records].sort((a, b) => {
-    if (!sortConfig.key) return 0; // if no key nothing happen
+    if (!sortConfig.key) return 0; // if no key, nothing happens
 
     const aValue = a.data_json[sortConfig.key];
-    const bValue = b.data_json[sortConfig.key]; // more sorting crap trying to understand it 
+    const bValue = b.data_json[sortConfig.key]; 
 
     if (aValue < bValue) return sortConfig.order === 'asc' ? -1 : 1;
     if (aValue > bValue) return sortConfig.order === 'asc' ? 1 : -1;
     return 0;
   });
 
-  // Function to opens window thing when click logic is still not coded
+  // Opens modal for editing
   const openModal = (record) => {
     setSelectedRecord(record); 
     setIsModalOpen(true); 
   };
 
-  
   const closeModal = () => {
-    setIsModalOpen(false); //closes window
+    setIsModalOpen(false); // closes window
   };
 
-  // Function to handle deleting a record (just a placeholder for now)
+  // deletes record still havent coded it yet
   const handleDelete = () => {
-    console.log("Item deleted", selectedRecord); // Log the deleted item
+    console.log("Item deleted", selectedRecord); // tests the deleted data in a console log 
     setIsModalOpen(false); 
   };
 
-  // for the life of em i coulnt figure out how to delete or update some of the json stuff that was already there this skipps all a few lines 
-  // so it only shows the actual drinks it will need to be deleted 
-  const filteredRecords = sortedRecords.filter(record => record.id > 1);
+  // goes thourgh the records and only checks for name or brand of liqour
+  const filteredRecords = sortedRecords.filter(record => {
+    const { data_json } = record;
+    return (
+      data_json.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      data_json.type_of_liquor.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  });
 
   return (
-    <div className="background"> {/* Apply background styling */}
-      <h1>Bartendgo Inventory Management</h1> {/* Page Title */}
-      
+    <div className="background"> {/* Apply background styling updates the whole table including search bar */ } 
+      <h1 style={{ display: 'inline-block', marginRight: '10px' }}>Bartendgo Inventory Management</h1> {/* Page Title */}
+      <input  // cant set a classname specific for the searchbar withoug messing up the whole page if i have time ill try to look into i tmore tonight
+        className="search-input" // Class for styling the search input
+        type="text" 
+        placeholder="Search inventory..." 
+        value={searchTerm} // Link the input value to the state
+        onChange={(e) => setSearchTerm(e.target.value)} // Update the state when the user types
+      />
+
       {/* Inventory table */}
       <table id="inventory-table">
         <thead>
@@ -103,9 +113,10 @@ const GetAllRecords = () => {
               onSort={handleSort}
               sortOrder={sortConfig.key === 'amount_on_hand' ? sortConfig.order : ''}
             />
-            <th>Stock Warning</th> {/* Static header, no sorting */}
-            <th>Reorder Level</th> {/* Static header, no sorting */}
-            <th>Action/Delete</th> {/* Static header, no sorting */}
+            {/*none of this stuff need to be sorted*/}
+            <th>Stock Warning</th> 
+            <th>Reorder Level</th> 
+            <th>Action/Delete</th> 
           </tr>
         </thead>
         <tbody>
@@ -126,7 +137,7 @@ const GetAllRecords = () => {
                 <td className={amount_on_hand < lowStockThreshold ? "low-stock" : ""}>{stockWarning}</td>
                 <td>{reorder_level}</td>
                 <td>
-                  {/* When "Click to edit" is clicked, open the window thing */}
+                  {/* When "Click to edit" is clicked, open the modal */}
                   <span className="edit-link" onClick={() => openModal(record)}>Click to edit</span>
                 </td>
               </tr>
@@ -135,7 +146,7 @@ const GetAllRecords = () => {
         </tbody>
       </table>
 
-      {/* window for editing item again logic not made yet placeholder*/}
+      {/* Modal for editing item, logic not made yet placeholder */}
       <EditModal 
         isOpen={isModalOpen} 
         onClose={closeModal} 
