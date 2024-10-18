@@ -17,6 +17,11 @@ body {
   background: url('./Components/Assests/bar.jpg') no-repeat;
   background-size: cover;
   background-position: center;
+ 
+
+
+
+  
 }
 
 code {
@@ -36,13 +41,13 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Bernard MT Condensed',
     monospace;
 }
 
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: Engravers MT;
   margin: 20px;
 }
 
@@ -58,7 +63,7 @@ th, td {
 }
 
 th {
-  background-color: #66605a;
+  background-color: #68635e;
 }
 
 .low-stock {
@@ -72,7 +77,7 @@ th {
 }
 
 .background {
-  background-color: #6d9c81; 
+  background-color: #a48771; 
   min-height: 100vh; 
   padding: 20px; 
 
