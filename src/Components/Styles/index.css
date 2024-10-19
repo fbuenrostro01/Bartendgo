@@ -16,7 +16,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('../Assests/bar.jpg') no-repeat;
+  background: url('../Assets/bar.jpg') no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -48,7 +48,7 @@ th {
 
 .edit-link {
   color: rgb(235, 235, 240);
-  cursor: url('C:\Users\GI Student\Bartendgo\src\Components\Assests\beer.png'), auto; /* Custom beer bottle cursor */
+  cursor: url('../Assets/beer.png'), auto; /* Custom beer bottle cursor */
 }
 
 .background {

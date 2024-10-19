@@ -29,7 +29,7 @@
   
   .modal-buttons button {
     margin: 0 10px;
-    cursor: url('C:\Users\GI Student\Bartendgo\src\Components\Assests\beer.png'), auto;;
+    cursor: url('../Assets/beer.png'), auto;;
     padding-top: 5px;
     padding-bottom: 5px;
 
