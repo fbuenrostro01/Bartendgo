@@ -1,6 +1,6 @@
 import React from 'react';
-import './EditWindow.css'; 
-
+import './Styles/EditWindow.css'; 
+// wee need to update a few things from here 
 const EditModal = ({ isOpen, onClose, record, onDelete, onUpdate, onCreate }) => {
   if (!isOpen) return null; // doesnt render if not open
 

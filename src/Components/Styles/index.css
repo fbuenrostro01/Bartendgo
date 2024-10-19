@@ -14,7 +14,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('./Components/Assests/bar.jpg') no-repeat;
+  background: url('../Assests/bar.jpg') no-repeat;
   background-size: cover;
   background-position: center;
  
