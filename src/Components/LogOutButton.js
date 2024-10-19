@@ -1,5 +1,6 @@
 import React from "react"
 import './Styles/LogOutButton.css'
+import './Login/Login.jsx'
 
 const LogOutButton=({onClick})=>{
     return(

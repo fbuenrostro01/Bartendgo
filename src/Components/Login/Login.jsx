@@ -1,11 +1,6 @@
 import React from 'react'
 import './Login.css'
-import { FaUser } from "react-icons/fa";
-import { FaLock } from "react-icons/fa";
 
-
-import user_icon from '../Assests/person.png'
-import password_icon from '../Assests/password.png'
 
 const Login = ({ setIsLoggedIn }) => {
 

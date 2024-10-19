@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import './Components/Styles/index.css'; // Assuming styles are correctly imported
-import SearchInput from './Components/SearchInput'; // filets the stuff when searching
-import InventoryTable from './Components/InventoryTable'; //
+import './Components/Styles/index.css';
+import SearchInput from './Components/SearchInput'; 
+import InventoryTable from './Components/InventoryTable'; 
 import EditModal from './Components/EditItemWindow'; 
 import AddItemsButton from './Components/AddItemsButton';
-import LogOutButton  from './Components/LogOutButton';
+import LogOutButton from './Components/LogOutButton';
 
 const BASE_URL = "https://unit-4-project-app-24d5eea30b23.herokuapp.com"; 
 
-const GetAllRecords = () => { // all our states are here
-
+const GetAllRecords = ({ onLogout }) => { 
   const [records, setRecords] = useState([]); 
   const [sortConfig, setSortConfig] = useState({ key: null, order: null }); 
   const [selectedRecord, setSelectedRecord] = useState(null);
@@ -59,9 +58,13 @@ const GetAllRecords = () => { // all our states are here
 
   const filteredRecords = sortedRecords.filter(record => {
     const { data_json } = record;
+    // Check if the necessary fields exist before using `toLowerCase()`
+    const brand = data_json.brand ? data_json.brand.toLowerCase() : '';
+    const typeOfLiquor = data_json.type_of_liquor ? data_json.type_of_liquor.toLowerCase() : '';
+    
     return (
-      data_json.brand.toLowerCase().includes(searchTerm.toLowerCase()) || 
-      data_json.type_of_liquor.toLowerCase().includes(searchTerm.toLowerCase())
+      brand.includes(searchTerm.toLowerCase()) || 
+      typeOfLiquor.includes(searchTerm.toLowerCase())
     );
   });
 
@@ -69,7 +72,6 @@ const GetAllRecords = () => { // all our states are here
     console.log("Add item button clicked"); 
   };
 
-  // Render
   return (
     <div className="background">
       <h1 style={{ display: 'inline-block', marginRight: '10px' }}>Bartendgo Inventory Management</h1>
@@ -87,9 +89,8 @@ const GetAllRecords = () => { // all our states are here
         record={selectedRecord} 
         onDelete={handleDelete} 
       />
-      {/* Place LogOutButton here */}
       <div className="logout-container">
-        <LogOutButton />
+        <LogOutButton onClick={onLogout} />
       </div>
     </div>
   );
