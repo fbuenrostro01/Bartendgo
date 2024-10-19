@@ -7,7 +7,8 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', Britannic Bold rgb(10, 10, 10);
+  font-weight: bold;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
@@ -17,7 +18,7 @@ body {
   background: url('../Assests/bar.jpg') no-repeat;
   background-size: cover;
   background-position: center;
- 
+  color: rgb(10, 10, 10);
 
 
 
@@ -25,7 +26,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Britannic Bold',
     monospace;
 }
 
@@ -41,19 +42,20 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Bernard MT Condensed',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Britannic Bold',
     monospace;
 }
 
 
 body {
-  font-family: Engravers MT;
+  font-family: Bernard MT Condensed rgb(240, 237, 237);
   margin: 20px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  border-radius: 10px 10px 0 0;
 }
 
 th, td {
@@ -72,15 +74,15 @@ th {
 }
 
 .edit-link {
-  color: blue;
+  color: rgb(235, 235, 240);
   cursor: pointer;
 }
 
 .background {
-  background-color: #a48771; 
+  background-color: #68635e; 
   min-height: 100vh; 
   padding: 20px; 
-
+  opacity: .85;
 }
 
 

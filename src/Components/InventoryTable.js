@@ -58,7 +58,7 @@ const InventoryTable = ({ records, handleSort, sortConfig, openModal }) => {
               <td className={amount_on_hand < lowStockThreshold ? "low-stock" : ""}>{stockWarning}</td>
               <td>{reorder_level}</td>
               <td>
-                <span className="edit-link" onClick={() => openModal(record)}>Click to edit</span>
+                <span className="edit-link" onClick={() => openModal(record)}>Edit</span>
               </td>
             </tr>
           );
