@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?familty=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 * {
   margin: 0;
@@ -7,8 +7,9 @@
 }
 
 body {
-  font-family: 'Poppins', Britannic Bold rgb(10, 10, 10);
-  font-weight: bold;
+  font-family: 'Poppins', sans-serif; /* Using Poppins from Google Fonts */
+  font-weight: bold; /* Apply bold font weight */
+  color: rgb(10, 10, 10); /* Set the font color */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
@@ -18,44 +19,16 @@ body {
   background: url('../Assests/bar.jpg') no-repeat;
   background-size: cover;
   background-position: center;
-  color: rgb(10, 10, 10);
-
-
-
-  
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Britannic Bold',
-    monospace;
-}
-
-
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Britannic Bold',
-    monospace;
-}
-
-
-body {
-  font-family: Bernard MT Condensed rgb(240, 237, 237);
-  margin: 20px;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, monospace; /* No need to add 'Britannic Bold' here */
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px 10px 0 0; /* Rounded top borders */
 }
 
 th, td {
@@ -75,14 +48,13 @@ th {
 
 .edit-link {
   color: rgb(235, 235, 240);
-  cursor: pointer;
+  cursor: url('C:\Users\GI Student\Bartendgo\src\Components\Assests\beer.png'), auto; /* Custom beer bottle cursor */
 }
 
 .background {
   background-color: #68635e; 
   min-height: 100vh; 
   padding: 20px; 
-  opacity: .85;
+  opacity: 0.85;
 }
-
 
