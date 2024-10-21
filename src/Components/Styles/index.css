@@ -48,7 +48,9 @@ th {
 
 .edit-link {
   color: rgb(235, 235, 240);
-  cursor: url('../Assets/beer.png'), auto; /* Custom beer bottle cursor */
+  cursor: url('../Assets/beer.png'), auto;
+  margin-left: 40px; /* incase my dumbass forgets added this to move the b
+  edit button a bit towards the middle */
 }
 
 .background {

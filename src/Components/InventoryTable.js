@@ -1,5 +1,7 @@
 import React from 'react';
 import SortableTableHeader from './SortItems';
+import DeleteButton from './DeleteButton'
+
 // this actual renders and shows the bale takes a few parameters for sorting and the records on line 4
 const InventoryTable = ({ records, handleSort, sortConfig, openModal }) => {
   return (

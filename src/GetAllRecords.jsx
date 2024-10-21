@@ -36,7 +36,7 @@ const GetAllRecords = ({ onLogout }) => {
     if (!sortConfig.key) return 0; 
     const aValue = a.data_json[sortConfig.key]; 
     const bValue = b.data_json[sortConfig.key]; 
-   
+    
     if (aValue < bValue) return sortConfig.order === 'asc' ? -1 : 1;
     if (aValue > bValue) return sortConfig.order === 'asc' ? 1 : -1;
     return 0; 
@@ -51,14 +51,54 @@ const GetAllRecords = ({ onLogout }) => {
     setIsModalOpen(false); 
   };
 
-  const handleDelete = () => {
-    console.log("Item deleted", selectedRecord); 
-    setIsModalOpen(false); 
+  const handleDelete = async () => {
+    if (records.length === 0) {
+      console.log("No items left to delete.");
+      return; // Prevent deletion if there are no items
+    }
+
+    if (selectedRecord) {
+      const response = await fetch(`${BASE_URL}/delete/data`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: selectedRecord.id,
+          team: 3
+        }),
+      });
+
+      if (response.ok) {
+        console.log("Item deleted", selectedRecord);
+        setRecords(records.filter(record => record.id !== selectedRecord.id));
+      } else {
+        console.error("Failed to delete item");
+      }
+
+      setIsModalOpen(false);
+    }
+  };
+
+  const handleUpdate = async (updatedRecord) => {
+    const response = await fetch(`${BASE_URL}/update/data`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedRecord),
+    });
+
+    if (response.ok) {
+      setRecords(records.map((record) => (record.id === updatedRecord.id ? updatedRecord : record)));
+      console.log("Item updated", updatedRecord);
+    } else {
+      console.error("Failed to update item");
+    }
   };
 
   const filteredRecords = sortedRecords.filter(record => {
     const { data_json } = record;
-    // Check if the necessary fields exist before using `toLowerCase()`
     const brand = data_json.brand ? data_json.brand.toLowerCase() : '';
     const typeOfLiquor = data_json.type_of_liquor ? data_json.type_of_liquor.toLowerCase() : '';
     
@@ -77,10 +117,10 @@ const GetAllRecords = ({ onLogout }) => {
       <h1 style={{ display: 'inline-block', marginRight: '10px' }}>Bartendgo Inventory Management</h1>
       <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <AddItemsButton 
-      onClick={handleAddItem}
-      isOpen={isModalOpen}
-      onClose={closeModal}
-       />
+        onClick={handleAddItem}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
       <InventoryTable  
         records={filteredRecords} 
         handleSort={handleSort} 
@@ -92,6 +132,7 @@ const GetAllRecords = ({ onLogout }) => {
         onClose={closeModal} 
         record={selectedRecord} 
         onDelete={handleDelete} 
+        onUpdate={handleUpdate} // Pass the handleUpdate function
       />
       <div className="logout-container">
         <LogOutButton onClick={onLogout} />
