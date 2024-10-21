@@ -37,7 +37,7 @@ const EditModal = ({ isOpen, onClose, record, onDelete }) => {
       <div className="modal-content">
         <h2>Edit Item</h2>
         
-        <label>
+        <label className='brand'>
           Brand
           <input
             name="brand"
@@ -45,16 +45,16 @@ const EditModal = ({ isOpen, onClose, record, onDelete }) => {
             onChange={handleChange}
           />
         </label>
-
-        <label>
-          Type of Liquor
+        <br></br>
+        <label className='type-of-liquor'>
+          Liquor
           <input
             name="typeOfLiquor"
             value={formData.typeOfLiquor}
             onChange={handleChange}
           />
         </label>
-
+        <br></br>
         <label className='price'>
           Price
           <input
@@ -65,7 +65,7 @@ const EditModal = ({ isOpen, onClose, record, onDelete }) => {
             onChange={handleChange}
           />
         </label>
-
+        <br></br>
         <label className='amount'>
           Amount
           <input
