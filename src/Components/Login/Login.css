@@ -77,3 +77,8 @@
     font-weight: 700;
 }
 
+.invalid {
+    color: red;
+    text-align: center;
+    opacity: 0;
+}

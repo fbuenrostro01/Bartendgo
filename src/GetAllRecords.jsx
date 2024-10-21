@@ -76,7 +76,11 @@ const GetAllRecords = ({ onLogout }) => {
     <div className="background">
       <h1 style={{ display: 'inline-block', marginRight: '10px' }}>Bartendgo Inventory Management</h1>
       <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <AddItemsButton onClick={handleAddItem} />
+      <AddItemsButton 
+      onClick={handleAddItem}
+      isOpen={isModalOpen}
+      onClose={closeModal}
+       />
       <InventoryTable  
         records={filteredRecords} 
         handleSort={handleSort} 

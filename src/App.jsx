@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './Components/Styles/index.css';
-import GetAllRecords from './GetAllRecords'; // Import your main records component
+import GetAllRecords from './GetAllRecords.jsx'; // Import your main records component
 import Login from './Components/Login/Login.jsx'; // Import the Login component
-import LogOutButton from './Components/LogOutButton'; // Import the LogOutButton
+import LogOutButton from './Components/LogOutButton.js'; // Import the LogOutButton
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to manage login status

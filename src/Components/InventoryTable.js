@@ -39,6 +39,7 @@ const InventoryTable = ({ records, handleSort, sortConfig, openModal }) => {
           <th>Stock Warning</th>
           <th>Reorder Level</th>
           <th>Action/Delete</th>
+          
         </tr>
       </thead>
       <tbody>

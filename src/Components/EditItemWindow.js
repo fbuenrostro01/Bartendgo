@@ -1,7 +1,7 @@
 import React from 'react';
 import './Styles/EditWindow.css'; 
 // wee need to update a few things from here 
-const EditModal = ({ isOpen, onClose, record, onDelete, onUpdate, onCreate }) => {
+const EditModal = ({ isOpen, onClose, record, onDelete, onUpdate }) => {
   if (!isOpen) return null; // doesnt render if not open
 
   const { brand, type_of_liquor, price, amount_on_hand } = record.data_json;
@@ -27,7 +27,6 @@ const EditModal = ({ isOpen, onClose, record, onDelete, onUpdate, onCreate }) =>
           <button onClick={onClose}>Close</button>
           <button onClick={onDelete}>Delete Item</button>
           <button onClick={onUpdate}>Update</button>
-          <button onClick={onCreate}>Create</button>
         </div>
       </div>
     </div>
