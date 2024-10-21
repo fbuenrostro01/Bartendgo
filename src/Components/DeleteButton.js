@@ -5,7 +5,8 @@ const DeleteButton = ({ id, onDelete }) => {
     const handleDelete = () => {
         const requestData = {
             id: id, 
-            team: 3  /// team id do not touch it borks the whole code
+            team: 3  /// team id do not touch it borks the whole code would have liked to have kept most of the code here
+            // but kept having issues with figuring out how import work the rest is in get all records
         };
 
         fetch('https://unit-4-project-app-24d5eea30b23.herokuapp.com/delete/data', {
@@ -18,7 +19,7 @@ const DeleteButton = ({ id, onDelete }) => {
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            onDelete(); // Call onDelete to handle any additional actions after deletion
+            onDelete(); 
         })
         .catch((error) => {
             console.error('Error:', error);

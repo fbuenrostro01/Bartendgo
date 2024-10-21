@@ -1,6 +1,9 @@
 import React from 'react';
 import SortableTableHeader from './SortItems'; 
-
+// first part jsut shows the main header with all the stuff we can show
+// we used the sortableheaer component we impotred to sort it
+// line 23 and 27 sorta does like a forloop over the records and we add them to constants
+// and the last just returns it 
 const SortedRecords = ({ records, handleSort, sortConfig, openModal }) => {
   return (
     <table id="inventory-table">

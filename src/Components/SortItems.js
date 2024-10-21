@@ -2,7 +2,7 @@ import React from 'react';
 
 const SortableTableHeader = ({ label, sortKey, onSort, sortOrder }) => {
   const handleClick = () => {
-    onSort(sortKey); // Call the onSort function passed from the parent
+    onSort(sortKey); // Calls the onSort function passed from the parent
   };
 
   return (

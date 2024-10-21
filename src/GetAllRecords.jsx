@@ -5,6 +5,7 @@ import InventoryTable from './Components/InventoryTable';
 import EditModal from './Components/EditItemWindow'; 
 import AddItemsButton from './Components/AddItemsButton';
 import LogOutButton from './Components/LogOutButton';
+import UpdateButton from './Components/UpdateButton';
 
 const BASE_URL = "https://unit-4-project-app-24d5eea30b23.herokuapp.com"; 
 
@@ -14,15 +15,22 @@ const GetAllRecords = ({ onLogout }) => {
   const [selectedRecord, setSelectedRecord] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-
-  useEffect(() => {
-    const fetchAllRecords = async () => {
+  
+  
+  const fetchAllRecords = async () => {
+    try {
       const response = await fetch(`${BASE_URL}/get/all?teamId=3`); 
+      if (!response.ok) throw new Error('Failed to fetch records');
       const data = await response.json(); 
       setRecords(data.response); 
-    };
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
     fetchAllRecords(); 
-  }, []);
+  }, []); 
 
   const handleSort = (key) => {
     let order = 'asc'; 
@@ -36,7 +44,6 @@ const GetAllRecords = ({ onLogout }) => {
     if (!sortConfig.key) return 0; 
     const aValue = a.data_json[sortConfig.key]; 
     const bValue = b.data_json[sortConfig.key]; 
-    
     if (aValue < bValue) return sortConfig.order === 'asc' ? -1 : 1;
     if (aValue > bValue) return sortConfig.order === 'asc' ? 1 : -1;
     return 0; 
@@ -47,53 +54,60 @@ const GetAllRecords = ({ onLogout }) => {
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = async () => {
     setIsModalOpen(false); 
+    await fetchAllRecords(); // Refresh records when closing the window
   };
 
   const handleDelete = async () => {
-    if (records.length === 0) {
-      console.log("No items left to delete.");
-      return; // Prevent deletion if there are no items
-    }
-
     if (selectedRecord) {
-      const response = await fetch(`${BASE_URL}/delete/data`, {
+      try {
+        const response = await fetch(`${BASE_URL}/delete/data`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: selectedRecord.id,
+            team: 3
+          }),
+        });
+
+        if (response.ok) {
+          console.log("Item deleted", selectedRecord);
+        } else {
+          console.error("test log");
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        closeModal(); // Close the modal window thing after deleting
+      }
+    }
+  };
+
+  const handleUpdate = async (updatedRecord) => {
+    try {
+      const response = await fetch(`${BASE_URL}/update/data`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          id: selectedRecord.id,
-          team: 3
+          ...updatedRecord,
+          team: 3,
         }),
       });
 
       if (response.ok) {
-        console.log("Item deleted", selectedRecord);
-        setRecords(records.filter(record => record.id !== selectedRecord.id));
+        console.log("Item updated", updatedRecord);
       } else {
-        console.error("Failed to delete item");
+        console.error("Failed to update item");
       }
-
-      setIsModalOpen(false);
-    }
-  };
-
-  const handleUpdate = async (updatedRecord) => {
-    const response = await fetch(`${BASE_URL}/update/data`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedRecord),
-    });
-
-    if (response.ok) {
-      setRecords(records.map((record) => (record.id === updatedRecord.id ? updatedRecord : record)));
-      console.log("Item updated", updatedRecord);
-    } else {
-      console.error("Failed to update item");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      closeModal(); // Closes the window
     }
   };
 
@@ -107,7 +121,7 @@ const GetAllRecords = ({ onLogout }) => {
       typeOfLiquor.includes(searchTerm.toLowerCase())
     );
   });
-
+//leftover code for when we were testing stuff
   const handleAddItem = () => {
     console.log("Add item button clicked"); 
   };
@@ -117,7 +131,7 @@ const GetAllRecords = ({ onLogout }) => {
       <h1 style={{ display: 'inline-block', marginRight: '10px' }}>Bartendgo Inventory Management</h1>
       <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <AddItemsButton 
-        onClick={handleAddItem}
+        refreshData={fetchAllRecords} // Pass the refresh function
         isOpen={isModalOpen}
         onClose={closeModal}
       />
@@ -132,7 +146,17 @@ const GetAllRecords = ({ onLogout }) => {
         onClose={closeModal} 
         record={selectedRecord} 
         onDelete={handleDelete} 
-        onUpdate={handleUpdate} // Pass the handleUpdate function
+        onUpdate={() => (
+          <UpdateButton
+            record={selectedRecord}
+            brand={selectedRecord.data_json.brand} // Pass necessary data
+            price={selectedRecord.data_json.price}
+            amountOnHand={selectedRecord.data_json.amount_on_hand}
+            typeOfLiquor={selectedRecord.data_json.type_of_liquor}
+            onClose={closeModal}
+            refreshData={fetchAllRecords} // Pass the fetchAllRecords function
+          />
+        )} 
       />
       <div className="logout-container">
         <LogOutButton onClick={onLogout} />
@@ -142,3 +166,5 @@ const GetAllRecords = ({ onLogout }) => {
 };
 
 export default GetAllRecords;
+
+

@@ -1,22 +1,29 @@
 import React, { useState } from 'react';
 import './Components/Styles/index.css';
-import GetAllRecords from './GetAllRecords.jsx'; // Import your main records component
-import Login from './Components/Login/Login.jsx'; // Import the Login component
-import LogOutButton from './Components/LogOutButton.js'; // Import the LogOutButton
+import GetAllRecords from './GetAllRecords.jsx'; 
+import Login from './Components/Login/Login.jsx'; 
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to manage login status
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  const [refreshKey, setRefreshKey] = useState(0); 
 
+  // changes the state to log in or out 
   const handleLogout = () => {
-    console.log("logged out"); // Log a message for debugging
-    setIsLoggedIn(false); // Set logged-in status to false
+    console.log("Logged out");
+    setIsLoggedIn(false); 
+  };
+
+  // refreshes taht data dont think we need it anymore but not trying to delted adn mess up code last moment 
+  const refreshData = () => {
+    setRefreshKey((oldKey) => oldKey + 1); 
   };
 
   return (
     <div className="App">
       {isLoggedIn ? (
         <>
-          <GetAllRecords onLogout={handleLogout} /> {/* Pass handleLogout here */}
+          {/*sends the data again*/}
+          <GetAllRecords refreshKey={refreshKey} onLogout={handleLogout} /> 
         </>
       ) : (
         <Login setIsLoggedIn={setIsLoggedIn} /> 
@@ -26,4 +33,5 @@ const App = () => {
 };
 
 export default App;
+
 
