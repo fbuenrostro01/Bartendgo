@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Bartendgo/static/css/main.0df0396c.css",
+    "main.js": "/Bartendgo/static/js/main.bf5c3625.js",
+    "static/js/453.3c97ee2f.chunk.js": "/Bartendgo/static/js/453.3c97ee2f.chunk.js",
+    "static/media/bar.jpg": "/Bartendgo/static/media/bar.d6d99c693befd3cfffea.jpg",
+    "index.html": "/Bartendgo/index.html",
+    "main.0df0396c.css.map": "/Bartendgo/static/css/main.0df0396c.css.map",
+    "main.bf5c3625.js.map": "/Bartendgo/static/js/main.bf5c3625.js.map",
+    "453.3c97ee2f.chunk.js.map": "/Bartendgo/static/js/453.3c97ee2f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0df0396c.css",
+    "static/js/main.bf5c3625.js"
+  ]
+}
