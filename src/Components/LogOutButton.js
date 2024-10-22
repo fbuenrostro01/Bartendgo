@@ -1,14 +1,29 @@
-import React from "react"
-import './Styles/LogOutButton.css'
-import './Login/Login.jsx'
-// again wanted the log out button to basically kick you out to login had to put some of the other code in the getallrcords component
-const LogOutButton=({onClick})=>{
-    return(
-        <button className="log-out-button" onClick={onClick}>
-        Log Out
-        </button>
-        
-    )
+import React, { useEffect } from "react";
+import './Styles/LogOutButton.css';
 
-}
-export default LogOutButton
+const LogOutButton = ({ onClick }) => {
+
+  useEffect(() => {
+    console.log('Auto-logout timer started');
+
+    // Set a timer to auto-log out after 2 minutes (120000 milliseconds)
+    const autoLogoutTimer = setTimeout(() => {
+      console.log('Auto-logout triggered');
+      onClick(); // Trigger the log out action
+    }, 120000); // 2 minute logout
+
+    // Clean up the timer if the component unmounts before 2 minutes
+    return () => {
+      console.log('Cleaning up auto-logout timer');
+      clearTimeout(autoLogoutTimer);
+    };
+  }, [onClick]);
+
+  return (
+    <button className="log-out-button" onClick={onClick}>
+      Log Out
+    </button>
+  );
+};
+
+export default LogOutButton;
